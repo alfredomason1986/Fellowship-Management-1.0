@@ -12,6 +12,7 @@ class UsersController extends AppController
 
     public function beforeFilter(Event $event)
     {
+
         parent::beforeFilter($event);
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
@@ -22,10 +23,24 @@ class UsersController extends AppController
     {
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
+			
+			if($user){   
+				$this->Auth->setUser($user);
+				switch($this->Auth->user('role')){
+					case 'admin':
+						return $this->redirect = array('controller'=>'users','action'=>'index','prefix'=>'admins','admin'=>true);
+						break;
+					case 'fellow':
+						$this->Auth->loginRedirect = array('controller'=>'users','action'=>'fellow_index','prefix'=>'fellow','fellow'=>true);
+						break;
+				}
+			}
+			/*
             if ($user) {
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());
             }
+			*/
             $this->Flash->error(__('Invalid username or password, try again'));
         }
     }
@@ -35,7 +50,11 @@ class UsersController extends AppController
         return $this->redirect($this->Auth->logout());
     }
 
-     public function index()
+    public function index()
+     {
+        $this->set('users', $this->Users->find('all'));
+    }
+	public function admin_index()
      {
         $this->set('users', $this->Users->find('all'));
     }

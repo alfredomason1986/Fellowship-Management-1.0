@@ -7,7 +7,13 @@ use Cake\Validation\Validator;
 
 class UsersTable extends Table
 {
-
+	public function initialize(array $config)
+    {
+        $this->belongsToMany('Fellowships', [
+            'joinTable' => 'users_fellowships',
+        ]);
+    }
+	
     public function validationDefault(Validator $validator)
     {
         return $validator
@@ -15,7 +21,7 @@ class UsersTable extends Table
             ->notEmpty('password', 'A password is required')
             ->notEmpty('role', 'A role is required')
             ->add('role', 'inList', [
-                'rule' => ['inList', ['admin', 'author']],
+                'rule' => ['inList', ['fellow', 'admin']],
                 'message' => 'Please enter a valid role'
             ]);
     }
