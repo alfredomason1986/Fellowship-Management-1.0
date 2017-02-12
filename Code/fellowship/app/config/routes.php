@@ -50,7 +50,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     //$routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
-	$routes->connect('/', ['controller' => 'Articles', 'action' => 'index']);
+	$routes->connect('/', ['controller' => 'Fellowships', 'action' => 'index']);
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
@@ -81,3 +81,11 @@ Router::scope('/', function (RouteBuilder $routes) {
  * how to customize the loading of plugin routes.
  */
 Plugin::routes();
+
+Router::prefix('admins', function ($routes) {
+    $routes->fallbacks('InflectedRoute');
+});
+
+Router::prefix('fellow', function ($routes) {
+    $routes->fallbacks('InflectedRoute');
+});
