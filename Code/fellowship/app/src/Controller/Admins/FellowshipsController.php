@@ -60,10 +60,10 @@ class FellowshipsController extends AppController
 			//$newData = ['user_id' => $this->Auth->user('id')];
 			//$article = $this->Fellowships->patchEntity($article, $newData);
 			if ($this->Fellowships->save($article)) {
-				$this->Flash->success(__('Your article has been saved.'));
+				$this->Flash->success(__('The fellowship has been saved.'));
 				return $this->redirect(['action' => 'index']);
 			}
-			$this->Flash->error(__('Unable to add your article.'));
+			$this->Flash->error(__('Unable to add your fellowship.'));
 		}
 		$this->set('article', $article);
 

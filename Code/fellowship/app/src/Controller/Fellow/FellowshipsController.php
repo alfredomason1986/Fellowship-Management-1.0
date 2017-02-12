@@ -7,6 +7,8 @@ use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
 
+use Cake\Datasource\ConnectionManager;
+
 class FellowshipsController extends AppController
 {
 	public function beforeFilter(Event $event)
@@ -22,7 +24,18 @@ class FellowshipsController extends AppController
 
     public function index()
     {
+		$conn = ConnectionManager::get('default');
+		$stmt = $conn->execute('SELECT * FROM fellowships AS f
+								INNER JOIN (SELECT id as uf_id, 
+								user_id as uf_u_id, fellowship_id as uf_f_id 
+								FROM users_fellowships) uf ON (
+								  f.id = uf.uf_f_id
+								  AND uf.uf_u_id=?
+								)', [$this->Auth->user('id')]);
+								//IN (SELECT id FROM users WHERE)
+		$articles = $stmt->fetchAll('assoc');
 		//$query = $this->Fellowships->find('all')->contain(['Tags']);
+		/*
 		$table = TableRegistry::get('Users_Fellowships',
 				array('table'=>'Users_Fellowships'));
         $articles = $table->find('all', array(
@@ -43,9 +56,9 @@ class FellowshipsController extends AppController
 						'f.id = Users_Fellowships.fellowship_id'
 					)
 				)
-			),
-			'fields' => array('u.*', 'f.*', 'Users_Fellowships.*')
+			)
 		));
+		*/
 		/*
 		find('all')
 					->join([
@@ -88,23 +101,21 @@ class FellowshipsController extends AppController
 		return parent::isAuthorized($user);
 	}
 	
-	public function add()
+	public function add($id)
     {
-		$article = $this->Fellowships->newEntity();
+		$table = TableRegistry::get('Users_Fellowships',
+				array('table'=>'Users_Fellowships'));
+		$article = $table->newEntity();
 		if ($this->request->is('post')) {
-			$article = $this->Fellowships->patchEntity($article, $this->request->data);
-			// Added this line
+			$article->fellowship_id = $id;
 			$article->user_id = $this->Auth->user('id');
-			// You could also do the following
-			//$newData = ['user_id' => $this->Auth->user('id')];
-			//$article = $this->Fellowships->patchEntity($article, $newData);
-			if ($this->Fellowships->save($article)) {
-				$this->Flash->success(__('Your article has been saved.'));
+			if ($table->save($article)) {
+				$this->Flash->success(__('Your application has been saved.'));
 				return $this->redirect(['action' => 'index']);
 			}
 			$this->Flash->error(__('Unable to add your article.'));
 		}
-		$this->set('article', $article);
+		//$this->set('article', $article);
 
 		// Just added the categories list to be able to choose
 		// one category for an article

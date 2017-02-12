@@ -24,14 +24,14 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
 			
-			if($user){   
+			if($user){
 				$this->Auth->setUser($user);
 				switch($this->Auth->user('role')){
 					case 'admin':
-						return $this->redirect = array('controller'=>'users','action'=>'index','prefix'=>'admins','admin'=>true);
+						return $this->redirect(array('controller'=>'users','action'=>'index','prefix'=>'admins'));
 						break;
 					case 'fellow':
-						$this->Auth->loginRedirect = array('controller'=>'users','action'=>'fellow_index','prefix'=>'fellow','fellow'=>true);
+						return $this->redirect(array('controller'=>'fellowships','action'=>'index','prefix'=>'fellow'));
 						break;
 				}
 			}

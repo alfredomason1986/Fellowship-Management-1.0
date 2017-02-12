@@ -35,7 +35,7 @@ $cakeDescription = 'FIU: Fellowship Management 1.0';
 </head>
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
+        <ul style="z-index:100;" class="title-area large-3 medium-4 columns">
             <li class="name">
                 <h1>
 				<?=  $this->Html->link(
@@ -78,11 +78,13 @@ $cakeDescription = 'FIU: Fellowship Management 1.0';
 				} else{
 					//print_r($user_data);
 					
-					echo '<li>' . $this->Html->link(
-						'Edit Profile', '/users/edit',
+					
+					if(isset($user_data['role']) && $user_data['role']==='admin'){
+						echo '<li>' . $this->Html->link(
+						'Edit Profile', '/admins/edit',
 						['class'=>'button', 'target'=>'_self'])
 						. '</li>';
-					if(isset($user_data['role']) && $user_data['role']==='admin'){
+						
 						echo '<li>' . $this->Html->link(
 						'Users', '/admins/users/',
 						['class'=>'button', 'target'=>'_self'])
@@ -92,6 +94,11 @@ $cakeDescription = 'FIU: Fellowship Management 1.0';
 						['class'=>'button', 'target'=>'_self'])
 						. '</li>';
 					}else if(isset($user_data['role']) && $user_data['role']==='fellow'){
+						echo '<li>' . $this->Html->link(
+						'Edit Profile', 'fellow/edit',
+						['class'=>'button', 'target'=>'_self'])
+						. '</li>';
+						
 						echo '<li>' . $this->Html->link(
 						'Fellowships You Applied To', '/fellow/fellowships',
 						['class'=>'button', 'target'=>'_self'])
@@ -104,8 +111,6 @@ $cakeDescription = 'FIU: Fellowship Management 1.0';
 				}
 					
 				?>
-			
-				<br />
 				
             </ul>
         </div>
