@@ -15,7 +15,7 @@
     <tr>
         <td><?= $article['uf_id'] ?></td>
         <td>
-            <?= $this->Html->link($article['title'], ['action' => 'view', $article['id']]) ?>
+            <?= $this->Html->link($article['title'], '/fellowships/view/'. $article['id']) ?>
         </td>
         <td>
             <!--?= $article->created->format(DATE_RFC850) ?-->
@@ -23,7 +23,7 @@
 		<td>
 			<?= $this->Form->postLink(
                 'Delete',
-                ['action' => 'delete', $article['id']],
+                ['action' => 'delete', $article['uf_id']],
                 ['confirm' => 'Are you sure?'])
             ?>
         </td>

@@ -18,7 +18,9 @@ class FellowshipsController extends AppController
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
         // cause problems with normal functioning of AuthComponent.
-        $this->Auth->allow([]);
+		
+		//this allows users to delete
+        $this->Auth->allow(['delete']);
 		$this->Auth->deny([]);
     }
 
@@ -77,12 +79,6 @@ class FellowshipsController extends AppController
         $this->set(compact('articles'));
     }
 	
-	public function view($id = null)
-    {
-        $article = $this->Fellowships->get($id);
-        $this->set(compact('article'));
-    }
-	
 	public function isAuthorized($user)
 	{
 		// All registered users can add articles
@@ -103,58 +99,29 @@ class FellowshipsController extends AppController
 	
 	public function add($id)
     {
-		$table = TableRegistry::get('Users_Fellowships',
-				array('table'=>'Users_Fellowships'));
-		$article = $table->newEntity();
+		$this->loadModel('Users_Fellowships');
+		
+		$article = $this->Users_Fellowships->newEntity();
 		if ($this->request->is('post')) {
 			$article->fellowship_id = $id;
 			$article->user_id = $this->Auth->user('id');
-			if ($table->save($article)) {
+			if ($this->Users_Fellowships->save($article)) {
 				$this->Flash->success(__('Your application has been saved.'));
 				return $this->redirect(['action' => 'index']);
 			}
 			$this->Flash->error(__('Unable to add your article.'));
 		}
-		//$this->set('article', $article);
 
-		// Just added the categories list to be able to choose
-		// one category for an article
-		//$categories = $this->Fellowships->Categories->find('treeList');
-		//$this->set(compact('categories'));
     }
-	
-	public function edit($id = null)
-	{
-		$article = $this->Fellowships->get($id);
-		if ($this->request->is(['post', 'put'])) {
-			$this->Fellowships->patchEntity($article, $this->request->data);
-			if ($this->Fellowships->save($article)) {
-				$this->Flash->success(__('Your article has been updated.'));
-				return $this->redirect(['action' => 'index']);
-			}
-			$this->Flash->error(__('Unable to update your article.'));
-		}
 
-		$this->set('article', $article);
-	}
-	
 	public function delete($id)
 	{
 		$this->request->allowMethod(['post', 'delete']);
+		$this->loadModel('Users_Fellowships');
+		$article = $this->Users_Fellowships->get($id);
 
-		//$article = $this->Fellowships->get($id);
-		
-		$table = TableRegistry::get('Users_Fellowships', array('table'=>'Users_Fellowships'));
-		$article = $table->get($id);
-		//$query = $query->delete();
-			//->where(['id' => $id]);
-		//$article = $table->get($id);
-		//$entity = $this->Articles->get(2);
-		//$result = $this->Articles->delete($entity);
-		
-		//if ($this->Fellowships->delete($article)) {
-		if($table->delete($article)){
-			$this->Flash->success(__('The article with id: {0} has been deleted.', h($id)));
+		if($this->Users_Fellowships->delete($article)){
+		$this->Flash->success(__('The article with id: {0} has been deleted.', h($id)));
 			return $this->redirect(['action' => 'index']);
 		}
 	}
