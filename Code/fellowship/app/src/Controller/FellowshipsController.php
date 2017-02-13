@@ -5,7 +5,6 @@ namespace App\Controller;
 
 class FellowshipsController extends AppController
 {
-
     public function index()
     {
         $articles = $this->Fellowships->find('all');

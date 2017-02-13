@@ -6,6 +6,9 @@ namespace App\Controller\Admins;
 use App\Controller\AppController;
 use Cake\Event\Event;
 
+use Cake\ORM\TableRegistry;
+use Cake\Datasource\ConnectionManager;
+
 class UsersController extends AppController
 {
 
@@ -95,6 +98,18 @@ class UsersController extends AppController
 		}
 
 		$this->set('user', $user);
+		
+		$conn = ConnectionManager::get('default');
+		$stmt = $conn->execute('SELECT * FROM fellowships AS f
+								INNER JOIN (SELECT id as uf_id, 
+								user_id as uf_u_id, fellowship_id as uf_f_id 
+								FROM users_fellowships) uf ON (
+								  f.id = uf.uf_f_id
+								  AND uf.uf_u_id=?
+								)', [$id]);
+								//IN (SELECT id FROM users WHERE)
+		$articles = $stmt->fetchAll('assoc');
+		$this->set(compact('articles'));
 	}
 		
 	public function delete($id)
