@@ -66,6 +66,14 @@ class AppController extends Controller
 	public function beforeFilter(Event $event)
     {
         $this->Auth->allow(['index', 'view']);
+		
+		$this->loadModel('Users');
+		if(isset($this->Auth->user()['id']) ){
+			if($this->Users->exists(['id'=> $this->Auth->user()['id']]) ){
+				$user = $this->Users->get($this->Auth->user()['id']);
+				$this->set('cred', $user);
+			}
+		}
     }
 	
 	public function isAuthorized($user)
@@ -85,7 +93,7 @@ class AppController extends Controller
      * @return \Cake\Network\Response|null|void
      */
     public function beforeRender(Event $event)
-    {
+    {	
         if (!array_key_exists('_serialize', $this->viewVars) &&
             in_array($this->response->type(), ['application/json', 'application/xml'])
         ) {

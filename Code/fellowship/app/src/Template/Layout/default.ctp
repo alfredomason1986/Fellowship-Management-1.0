@@ -48,10 +48,12 @@ $cakeDescription = 'FIU: Fellowship Management 1.0';
         <div class="top-bar-section">
 			<?php
 				
-				$session = $this->request->session();
-				$user_data = $session->read('Auth.User');
-				if(!empty($user_data)){
-					echo '<span style="font-weight: bolder; color:white;">Hello '.$user_data['username'].'.</span>';
+				//$session = $this->request->session();
+				//$cred_data = $this->request->session()->read('Auth.User');
+				//$cred_data = AuthComponent::user();
+				//$credname = $cred['username'];
+				if(isset($cred) && $cred['username']!=''){
+					echo '<span style="font-weight: bolder; color:white;">Hello '.$cred['username'].'.</span>';
 				}
 			?>
             <ul class="right">
@@ -59,13 +61,13 @@ $cakeDescription = 'FIU: Fellowship Management 1.0';
 				<?php
 				
 				//$session = $this->request->session();
-				//$user_data = $session->read('Auth.User');
-				//if(!empty($user_data)){
-				//	print_r($user_data);
+				//$cred_data = $session->read('Auth.User');
+				//if(!empty($cred_data)){
+				//	print_r($cred_data);
 				//}
 				
 				
-				if(empty($user_data)){
+				if(empty($cred)){
 					echo '<li>' . $this->Html->link(
 						'Create Profile', '/users/add',
 						['class'=>'button', 'target'=>'_self'])
@@ -76,12 +78,12 @@ $cakeDescription = 'FIU: Fellowship Management 1.0';
 						['class'=>'button', 'target'=>'_self'])
 						. '</li>';
 				} else{
-					//print_r($user_data);
+					//print_r($cred_data);
 					
 					
-					if(isset($user_data['role']) && $user_data['role']==='admin'){
+					if(isset($cred['role']) && $cred['role']==='admin'){
 						echo '<li>' . $this->Html->link(
-						'Edit Profile', '/admins/edit',
+						'Edit Profile', '/admins/users/edit/'.$cred['id'],
 						['class'=>'button', 'target'=>'_self'])
 						. '</li>';
 						
@@ -93,9 +95,9 @@ $cakeDescription = 'FIU: Fellowship Management 1.0';
 						'Fellowships', '/admins/fellowships/',
 						['class'=>'button', 'target'=>'_self'])
 						. '</li>';
-					}else if(isset($user_data['role']) && $user_data['role']==='fellow'){
+					}else if(isset($cred['role']) && $cred['role']==='fellow'){
 						echo '<li>' . $this->Html->link(
-						'Edit Profile', 'fellow/edit',
+						'Edit Profile', '/fellow/users/edit/'.$cred['id'],
 						['class'=>'button', 'target'=>'_self'])
 						. '</li>';
 						
