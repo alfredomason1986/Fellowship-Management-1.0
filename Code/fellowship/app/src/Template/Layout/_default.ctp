@@ -19,12 +19,13 @@ $cakeDescription = 'FIU: Fellowship Management 1.0';
 <html>
 <head>
     <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
+
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
 
@@ -33,9 +34,6 @@ $cakeDescription = 'FIU: Fellowship Management 1.0';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <div class="logoheader">
-        <h1><a><img src="http://gradschool.fiu.edu/images/logo1.png" alt="fiu"></a></h1>
-    </div>
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul style="z-index:100;" class="title-area large-3 medium-4 columns">
             <li class="name">
