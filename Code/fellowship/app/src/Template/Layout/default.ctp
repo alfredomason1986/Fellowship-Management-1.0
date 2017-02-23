@@ -17,113 +17,71 @@ $cakeDescription = 'FIU: Fellowship Management 1.0';
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-    <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
-    </title>
-    <?= $this->Html->meta('icon') ?>
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <head>
+        <?= $this->Html->charset() ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            <?= $cakeDescription ?>:
+            <?= $this->fetch('title') ?>
+        </title>
+        <?= $this->Html->meta('icon') ?>
 
-    <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
-</head>
-<body>
-    <div class="logoheader">
-        <h1><a><img src="http://gradschool.fiu.edu/images/logo1.png" alt="fiu"></a></h1>
-    </div>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul style="z-index:100;" class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1>
-				<?=  $this->Html->link(
-					'Home', '/',
-					['class'=>'', 'target'=>'_self']);
-				?>
-				</h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-			<?php
-				
-				//$session = $this->request->session();
-				//$cred_data = $this->request->session()->read('Auth.User');
-				//$cred_data = AuthComponent::user();
-				//$credname = $cred['username'];
-				if(isset($cred) && $cred['username']!=''){
-					echo '<span style="font-weight: bolder; color:white;">Hello '.$cred['username'].'.</span>';
-				}
-			?>
-            <ul class="right">
-            
-				<?php
-				
-				//$session = $this->request->session();
-				//$cred_data = $session->read('Auth.User');
-				//if(!empty($cred_data)){
-				//	print_r($cred_data);
-				//}
-				
-				
-				if(empty($cred)){
-					echo '<li>' . $this->Html->link(
-						'Create Profile', '/users/add',
-						['class'=>'button', 'target'=>'_self'])
-						. '</li>';
-						
-					echo '<li>' . $this->Html->link(
-						'Login', '/users/login',
-						['class'=>'button', 'target'=>'_self'])
-						. '</li>';
-				} else{
-					//print_r($cred_data);
-					
-					
-					if(isset($cred['role']) && $cred['role']==='admin'){
-						echo '<li>' . $this->Html->link(
-						'Edit Profile', '/admins/users/edit/'.$cred['id'],
-						['class'=>'button', 'target'=>'_self'])
-						. '</li>';
-						
-						echo '<li>' . $this->Html->link(
-						'Users', '/admins/users/',
-						['class'=>'button', 'target'=>'_self'])
-						. '</li>';
-						echo '<li>' . $this->Html->link(
-						'Fellowships', '/admins/fellowships/',
-						['class'=>'button', 'target'=>'_self'])
-						. '</li>';
-					}else if(isset($cred['role']) && $cred['role']==='fellow'){
-						echo '<li>' . $this->Html->link(
-						'Edit Profile', '/fellow/users/edit/'.$cred['id'],
-						['class'=>'button', 'target'=>'_self'])
-						. '</li>';
-						
-						echo '<li>' . $this->Html->link(
-						'Fellowships You Applied To', '/fellow/fellowships',
-						['class'=>'button', 'target'=>'_self'])
-						. '</li>';
-					}
-					echo '<li>' . $this->Html->link(
-						'Logout', '/users/logout',
-						['class'=>'button', 'target'=>'_self'])
-						. '</li>';
-				}
-					
-				?>
-				
-            </ul>
-        </div>
-    </nav>
-    <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
-    </div>
-    <footer>
-    </footer>
-</body>
+        <!-- lib/CSS-->
+        <?php
+            echo $this->Html->css('bootstrap.min'); // Bootstrap
+            echo $this->Html->css('metisMenu.min'); // MetisMenu
+            echo $this->Html->css('sb-admin-2.min'); // Custom Theme
+            echo $this->Html->css('font-awesome.min'); // Custom Fonts    
+            echo $this->Html->css('bootstrap-social'); // Social Buttons
+
+            /*Datatables*/
+            echo $this->Html->css('datatables/dataTables.bootstrap');
+            echo $this->Html->css('datatables/dataTables.responsive');
+
+            echo $this->Html->css('morris'); // Morris Charts
+        ?>
+        <!-- End lib/CSS -->
+
+        <!--lib/JS-->
+        <?php
+            echo $this->Html->script('jquery.min.js'); // jQuery
+            echo $this->Html->script('bootstrap.min.js'); // Bootstrap
+            echo $this->Html->script('metisMenu.min.js'); // MetisMenu
+            echo $this->Html->script('sb-admin-2.min.js'); // Custom Theme
+
+            /*Datatables*/
+            echo $this->Html->script('datatables/jquery.dataTables.min.js');
+            echo $this->Html->script('datatables/dataTables.bootstrap.min.js');
+            echo $this->Html->script('datatables/dataTables.responsive.js');
+
+            /*Morris Chart*/
+    //        echo $this->Html->script('morrisChart/raphael.min.js');
+    //        echo $this->Html->script('morrisChart/morris.min.js');
+    //        echo $this->Html->script('morrisChart/morris-data.js');
+
+            /*Flot Charts*/
+    //        echo $this->Html->script('flotChart/excanvas.min.js');
+    //        echo $this->Html->script('flotChart/jquery.flot.js');
+    //        echo $this->Html->script('flotChart/jquery.flot.pie.js');
+    //        echo $this->Html->script('flotChart/jquery.flot.resize.js');
+    //        echo $this->Html->script('flotChart/jquery.flot.time.js');
+    //        echo $this->Html->script('flotChart/jquery.flot.tooltip.min.js');
+    //        echo $this->Html->script('flotChart/flot-data.js');
+        ?>
+        <!--End of lib/JS-->
+
+        <?= $this->fetch('meta') ?>
+        <?= $this->fetch('css') ?>
+        <?= $this->fetch('script') ?>
+    </head>
+    <body>
+        <div id="wrapper">
+            <!-- Navigation -->
+            <?php include('navigation.ctp'); ?>
+            <?= $this->Flash->render() ?>
+            <div class="container clearfix">
+                <?= $this->fetch('content') ?>
+            </div>
+        </div>    
+    </body>
 </html>
