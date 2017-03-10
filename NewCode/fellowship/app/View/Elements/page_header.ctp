@@ -1,3 +1,9 @@
+<?php 
+    $userLink = "";
+    $title = "";
+    $buttons = array();
+?>
+
 <div class="slds-page-header">
     <div class="slds-grid">
         <div class="slds-col slds-has-flexi-truncate">

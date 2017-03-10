@@ -15,7 +15,7 @@ class FellowshipsController extends AppController {
 	 *
 	 * @var array
 	 */
-		public $components = array('Paginator');
+	public $components = array('Paginator');
 	
 	
 	/**
@@ -23,7 +23,7 @@ class FellowshipsController extends AppController {
 	 *
 	 * @return void
 	 */
-		public function index() {
+	public function index() {
 		$this->Fellowship->recursive = 0;
 		$this->set('fellowships', $this->Paginator->paginate());
 	}
@@ -36,7 +36,7 @@ class FellowshipsController extends AppController {
 	 * @param string $id
 	 * @return void
 	 */
-		public function view($id = null) {
+	public function view($id = null) {
 		if (!$this->Fellowship->exists($id)) {
 			throw new NotFoundException(__('Invalid fellowship'));
 		}
@@ -50,7 +50,7 @@ class FellowshipsController extends AppController {
 	 *
 	 * @return void
 	 */
-		public function add() {
+	public function add() {
 		if ($this->request->is('post')) {
 			$this->Fellowship->create();
 			if ($this->Fellowship->save($this->request->data)) {
@@ -79,7 +79,7 @@ class FellowshipsController extends AppController {
 	 * @param string $id
 	 * @return void
 	 */
-		public function edit($id = null) {
+	public function edit($id = null) {
 		if (!$this->Fellowship->exists($id)) {
 			throw new NotFoundException(__('Invalid fellowship'));
 		}
@@ -113,7 +113,7 @@ class FellowshipsController extends AppController {
 	 * @param string $id
 	 * @return void
 	 */
-		public function delete($id = null) {
+	public function delete($id = null) {
 		$this->Fellowship->id = $id;
 		if (!$this->Fellowship->exists()) {
 			throw new NotFoundException(__('Invalid fellowship'));
