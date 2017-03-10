@@ -1,0 +1,370 @@
+
+form div{
+    clear: none;
+    margin-bottom: 0;
+    padding: .25rem;
+}
+
+form {
+    margin: 0;
+    width: 100%;
+}
+
+/*Trigger Link text*/
+
+.triggerLinkText {
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: rgb(22, 50, 92);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: inline-block;
+}
+
+a{
+    font-weight: normal;
+}
+
+table.dataTable thead > tr > th {
+    padding: 8px;
+
+}
+
+th a {
+    display: inline-block;
+}
+
+.slds-table--bordered tbody td, th {
+    border-bottom: 0;
+}
+
+.slds-table tbody tr {
+    background-color: #fff;
+    border: 0;
+}
+
+.slds-media--timeline:before {
+    top: 25px;
+    z-index: 0;
+}
+
+.slds-section-title--divider.edit-form {
+    margin: 0 -1rem 8px !important;
+}
+
+.slds-section-title--divider.read-form {
+    margin: 0 0 8px !important;
+}
+
+.sectionHeader {
+    font-size: 1.125rem;
+    color: rgb(22, 50, 92);
+    font-weight: 300;
+    display: inline-block;
+    background-color: #ffffff;
+    padding-right: .75rem;
+}
+
+.emptyListMessage {
+    padding: 0 2rem;
+    text-align: center;
+    font-size: .875rem;
+    color: rgb(84, 105, 141);
+}
+
+.dottedBorder {
+    height: .5rem;
+    line-height: 1rem;
+    border-bottom: 1px dashed rgb(216, 221, 230);
+    overflow: visible;
+    clear: both;
+    margin-bottom: 2rem;
+}
+
+@media only screen and (min-width: 64.0625em) {
+    .showEmptyContent .listContent .emptyListContent {
+        position: initial;
+        padding-bottom: 1.5rem;
+    }
+}
+
+.ui-grid {
+    border: none;
+    border-bottom: 1px solid #d8dde6;
+    background: none;
+}
+
+.ui-grid-top-panel {
+    font-weight: normal;
+    background: rgb(255, 255, 255);
+}
+
+.ui-grid-cell-contents {
+    word-wrap: break-word;
+    padding: .75rem .5rem;
+}
+
+.ui-grid-row,
+.ui-grid-cell {
+    height: auto !important;
+}
+
+.ui-grid-row div[role=row] {
+    display: flex;
+    align-content: stretch;
+}
+
+.nav-second-level li a {
+    padding-left: 10px;
+}
+
+.ui-grid-row:nth-child(odd) .ui-grid-cell {
+    background-color: #f4f6f9;
+}
+
+.ui-grid-row:nth-child(even) .ui-grid-cell {
+    background-color: rgb(255, 255, 255);
+}
+
+.ui-grid-header-cell {
+    border-right: 0;
+    text-transform: uppercase;
+}
+
+.ui-grid-cell {
+    border-right: 0;
+    border-bottom: 1px solid #d8dde6;
+}
+
+.ui-grid-pinned-container.ui-grid-pinned-container-left .ui-grid-header-cell:last-child {
+    border-right: none;
+}
+
+.ui-grid-pinned-container.ui-grid-pinned-container-left .ui-grid-cell:last-child {
+    border-right: none;
+}
+
+.ui-grid-column-menu-button .ui-grid-icon-angle-down {
+    vertical-align: -webkit-baseline-middle;
+}
+
+.gridFixedHeight {
+    height: 802px !important;
+}
+
+@media (min-width: 992px) {
+    .modal-lg {
+        width: 900px;
+    }
+    .modal-xlg {
+        width: 1030px;
+    }
+}
+
+.dropdown-views {
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: #16325c;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: inline-block;
+    border: 0;
+    background: #f4f6f9;
+    cursor: pointer;
+}
+.dropdown-views option {
+    background-color: white;
+    color: #16325c;
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    width: 100%;
+    height: 2.125rem;
+    padding: 10px;
+    font-size: 1rem;
+    margin: 5px;
+}
+
+label {
+    font-weight: normal;
+}
+
+.slds-checkbox .slds-form-element__label {
+    font-size: 0.75rem;
+}
+
+.slds-dropdown {
+    z-index: 1;
+}
+
+.slds-text-heading--small,
+.slds-text-heading--medium,
+.slds-text-heading--label {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #676A6C;
+}
+
+.navbar-form-custom .form-control {
+    background-color: white;
+    font-size: 14px;
+    height: 34px;
+    border: 1px solid #e5e6e7;
+    margin: 12px 0;
+    z-index: 2000;
+}
+
+@media (min-width: 992px) {
+    .navbar-form-custom {
+        width: 50%;
+        position: relative;
+        left: 27%;
+    }
+}
+
+.ui-grid-action-column {
+    position: absolute;
+    right: 1.5rem;
+    padding: .75rem .5rem;
+}
+
+#page-wrapper {
+    padding: 0;
+}
+
+.navbar-fixed-top,
+.navbar-static-top {
+    background-color: #FFF;
+}
+
+.main-screen {
+    padding: 0 1.5rem 0 1.5rem;
+    margin-top: 1.5rem;
+}
+
+body.mini-navbar .navbar-static-side {
+    width: 56px;
+    height: 0 !important;
+}
+
+body.mini-navbar #page-wrapper {
+    margin: 0 0 0 56px;
+}
+
+.slds-tabs--scoped__nav {
+    border-bottom: none;
+}
+
+.slds-tabs--scoped__link {
+    padding: 0 1rem;
+    text-transform: capitalize;
+    font-size: .875rem;
+}
+
+.mini-navbar .nav-second-level {
+    left: 56px;
+    padding: .25rem .5rem !important;
+    min-width: 200px !important;
+}
+
+.mini-navbar .nav-second-level-label {
+    display: inline !important;
+}
+
+@media (min-width: 768px) {
+    #page-wrapper {
+        margin: 0 0 0 240px;
+    }
+    .navbar-static-side {
+        width: 240px;
+    }
+}
+
+.nav-side-bar-icon {
+    padding: .25rem .5rem;
+}
+
+.navbar-static-side {
+    position: fixed;
+}
+
+.slds-form-element__control.read-only-view {
+    height: 36px;
+}
+
+.slds-input-has-icon--right .slds-input__icon {
+    right: 0.25rem;
+}
+
+
+/*ng-cloak CSS*/
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+    display: none !important;
+}
+
+
+/*This class is used in the Typeaheads add selection*/
+
+.message.typeahead-quick-add {
+    border: 0;
+    border-bottom: 1px solid #e7eaec;
+    border-radius: 0;
+}
+
+.slds-textarea {
+    resize: none;
+}
+
+.navbar-search {
+    margin: .75rem 0;
+}
+
+.slds-lookup__item.active>a {
+    background-color: #f4f6f9;
+}
+
+.no-lateral-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.slds-page-header {
+    padding: 1.5rem 1.5rem;
+    border: 1px solid #d8dde6;
+}
+
+.slds-spinner {
+    position: fixed;
+}
+
+.slds-popover {
+    position: absolute;
+}
+
+ul.slds-lookup__list {
+    margin: 0;
+}
+
+#wrapper {
+    overflow-y: hidden;
+}
+
+.slds-popover {
+    width: 20rem;
+}
+
+.slds-card__body {
+    background-color: #fff;
+}
+.slds-form-element__label {
+    font-size: medium;
+}
