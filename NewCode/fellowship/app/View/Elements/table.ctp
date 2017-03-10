@@ -1,9 +1,5 @@
 <?php 
     $isUserAllowed = false;
-    $headerCols = array();
-    $tableId = "";
-    $rows = array();
-    $actions = array();
 
     $isUserAllowed = !!$isUserAllowed ? $isUserAllowed : AuthComponent::user('role_id') == "1";
 ?>

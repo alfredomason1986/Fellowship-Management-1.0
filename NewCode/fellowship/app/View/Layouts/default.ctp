@@ -114,5 +114,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         $('#myDataTable').DataTable({
             responsive: true
         });
+debugger;
+        var temp = '<?php echo AuthComponent::user("role_id") ?>'
     });
 </script>

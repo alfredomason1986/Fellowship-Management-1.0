@@ -103,8 +103,11 @@ class UsersController extends AppController {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
 		}
+
+		$user = $this->User->find('first', $options);
+		$roles = $this->User->Role->find('list');
 		$fellowships = $this->User->Fellowship->find('list');
-		$this->set(compact('fellowships'));
+		$this->set(compact('fellowships', 'user', 'roles'));
 	}
 
 /**

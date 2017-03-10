@@ -1,59 +1,69 @@
+<?php 
+	$userLink = $this->Html->link(__($user['User']['first_name'] .$user['User']['last_name']), array('controller' => 'users', 'action' => 'view', $user['User']['id']));
+	$title = h($user['User']['first_name'] .' ' .$user['User']['last_name']);
+	$buttons = array(
+			$this->Html->link(__("Edit"), array('action' => 'edit', $user['User']['id']), array("class" => "slds-button slds-button--neutral")),
+			$this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id'] ), 
+				array("class" => "slds-button slds-button--neutral", 'confirm' => __('Are you sure you want to delete user %s?', $user['User']['first_name'] .' '. $user['User']['last_name'])))
+		);
+?>
+
 <div class="users view">
-<h2><?php echo __('User'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Last Name'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['last_name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('First Name'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['first_name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Username'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['username']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Password'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['password']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['modified']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Role Id'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['role_id']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+	<?php echo $this->element('page_header', array('userLink' => $userLink, "title" => $title, 'buttons' => $buttons, 'escape' => false)); ?>
+
+	<div class="main-screen">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="slds-form-element slds-has-divider--bottom">
+					<span for="Description" class="slds-form-element__label">Username</span>
+					<div class="slds-form-element__control read-only-view">
+						<span class="slds-form-element__static"><?php echo h($user['User']['username']); ?></span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="slds-form-element slds-has-divider--bottom">
+					<span for="Degree" class="slds-form-element__label">Role</span>
+					<div class="slds-form-element__control read-only-view">
+						<span class="slds-form-element__static">
+							<?php echo h($user['Role']['name']); ?>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="slds-form-element slds-has-divider--bottom">
+					<span for="Description" class="slds-form-element__label">Created</span>
+					<div class="slds-form-element__control read-only-view">
+						<span class="slds-form-element__static"><?php echo date('m/d/Y', strtotime($user['User']['created'])); ?></span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="slds-form-element slds-has-divider--bottom">
+					<span for="Degree" class="slds-form-element__label">Modified</span>
+					<div class="slds-form-element__control read-only-view">
+						<span class="slds-form-element__static">
+							<span class="slds-form-element__static"><?php echo date('m/d/Y', strtotime($user['User']['modified'])); ?></span>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $user['User']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['User']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['User']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Fellowships'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Fellowships'), array('controller' => 'fellowships', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Fellowship'), array('controller' => 'fellowships', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+
 <div class="related">
 	<h3><?php echo __('Related Fellowships'); ?></h3>
 	<?php if (!empty($user['Fellowship'])): ?>
@@ -91,9 +101,5 @@
 	</table>
 <?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Fellowship'), array('controller' => 'fellowships', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
+	
 </div>

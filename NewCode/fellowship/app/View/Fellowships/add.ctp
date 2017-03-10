@@ -1,4 +1,5 @@
 <?php 
+    $userLink = "";
 	$title = __('Add Fellowship');
 	$buttons = array(
 			$this->Form->button('Save', array("class" => "slds-button slds-button--neutral", "onclick" => "submitForm()")),
